@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout :: page_head}">
+</head>
+<body>
+<div>
+    <div>
+        <nav th:replace="~{layout :: page_navbar}"></nav>
+    </div>
+    <main>
+        <div th:if="${success}" class="bg-color-green padding-3 margin-auto-all box-shadow margin-top-2">
+            <p class="text-center text-xl"><strong>Dane zostały zaktualizowane</strong></p>
+        </div>
+        <div th:if="${pass}" class="bg-color-green padding-3 margin-auto-all box-shadow margin-top-2">
+            <p class="text-center text-xl"><strong>Hasło zostało zmienione</strong></p>
+        </div>
+        <div>
+            <div class="formularz bg-color-white box-shadow margin-top-2">
+                <h2 class="text-center">Moje dane</h2>
+                <div class="margin-top-2">
+                    <p><strong>Imię:</strong> <span th:text="${user.firstName}"></span></p>
+                </div>
+                <div class="margin-top-2">
+                    <p><strong>Nazwisko:</strong> <span th:text="${user.lastName}"></span></p>
+                </div>
+                <div class="margin-top-2">
+                    <p><strong>Email:</strong> <span th:text="${user.email}" title="Pole nieedytowalne"></span></p>
+                </div>
+                <div class="margin-top-2 translate-y">
+                    <a th:href="@{/edit-user}" class="text-green padding-3">Edytuj dane</a>
+                </div>
+                <div class="translate-y margin-top-1">
+                    <a th:href="@{/change-password}" class="text-orange padding-3">Zmień hasło</a>
+                </div>
+                <div>
+                    <form th:action="@{/my-account/{id}(id=${user.id})}" method="post"
+                          onsubmit="return confirm('Czy na pewno chcesz usunąć konto?\nWprowadzone zmiany będą nieodwracalne!');">
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                        <input type="hidden" name="_method" value="delete" />
+                        <button class="transparent-button translate-y text-red padding-3 text-medium" type="submit">Usuń konto</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>

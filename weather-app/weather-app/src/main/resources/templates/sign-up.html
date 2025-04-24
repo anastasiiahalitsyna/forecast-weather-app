@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css"/>
+    <title>Rejestracja</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div>
+        <main>
+            <div th:if="${success}" class="bg-color-green padding-3 margin-auto-all box-shadow margin-top-2">
+                <p class="text-center text-xl"><strong>Konto zostało utworzone!</strong></p>
+                <div class="margin-auto width-max-content">
+                    <a href="/sign-in" class="text-xl text-red text-blue text-center">Zaloguj się</a>
+                </div>
+            </div>
+            <section>
+                <h1 class="text-center">Rejestracja</h1>
+                <div class="formularz bg-color-white box-shadow">
+                    <div>
+                        <form method="post" th:object="${appUserDTO}">
+                            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                            <div class="margin-auto width-max-content">
+                                <label for="first_name">Imię</label>
+                                <div>
+                                    <input class="input-text" type="text" name="first_name" id="first_name" placeholder="np. Anna" th:field="${appUserDTO.firstName}">
+                                    <p th:if="${#fields.hasErrors('firstName')}"
+                                       th:errorclass="text-danger"
+                                       th:errors="${appUserDTO.firstName}">
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="margin-auto width-max-content">
+                                <label for="last_name">Nazwisko</label>
+                                <div>
+                                    <input class="input-text" type="text" name="last_name" id="last_name" placeholder="np. Kowalska" th:field="${appUserDTO.lastName}">
+                                    <p th:if="${#fields.hasErrors('lastName')}"
+                                       th:errorclass="text-danger"
+                                       th:errors="${appUserDTO.lastName}">
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="margin-auto width-max-content">
+                                <label for="email">Email</label>
+                                <div>
+                                    <input class="input-text" type="email" name="email" id="email" placeholder="np. anna.kowalska@mail.com" th:field="${appUserDTO.email}">
+                                    <p th:if="${#fields.hasErrors('email')}"
+                                       th:errorclass="text-danger"
+                                       th:errors="${appUserDTO.email}">
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex flex-direction align-items-center">
+                                <div class="width-max-content flex flex-direction align-items-center relative">
+                                    <label for="password" class="align-items-start width-max">Hasło</label>
+                                    <input type="password" name="password" id="password" class="password input-text" th:field="${appUserDTO.password}">
+                                    <div class="width-max-content bg-color-light-red padding pass-box box-shadow">
+                                        <h4 class="text-center">Hasło musi zawierać:</h4>
+                                        <ul>
+                                            <li>Co najmniej 16 znakow</li>
+                                            <li>Co najmniej jedną dużą literę</li>
+                                            <li>Co najmniej jedną małą literę</li>
+                                            <li>Co najmniej jedną cyfrę</li>
+                                            <li>Co najmniej jeden znak specjalny</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                    <p th:if="${#fields.hasErrors('password')}"
+                                       th:errorclass="text-danger"
+                                       th:errors="${appUserDTO.password}">
+                                    </p>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="margin-auto width-max-content">
+                                <label for="password2">Powtórz hasło</label>
+                                <div>
+                                    <input class="input-text" type="password" name="password2" id="password2" th:field="${appUserDTO.confirmPassword}">
+                                    <p th:if="${#fields.hasErrors('confirmPassword')}"
+                                       th:errorclass="text-danger"
+                                       th:errors="${appUserDTO.confirmPassword}">
+                                    </p>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="text-center">
+                                <button type="submit" class="text-center translate-y">Zarejestruj się</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="margin-auto width-25 margin-top-2 bg-color-white box-shadow">
+                    <div class="padding-2 text-center">
+                        <h3 class="text-medium margin-top-0 text-orange">Masz już konto?</h3>
+                        <div class="translate-y">
+                            <a href="/sign-in" class="text-xl text-center text-black text-blue"><strong>Zaloguj się</strong></a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
