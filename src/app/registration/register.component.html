@@ -1,0 +1,58 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-100">
+    <div class="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md">
+      <h2 class="text-2xl font-bold mb-6 text-center">Rejestracja</h2>
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  
+        <div class="mb-4">
+          <label class="block text-sm font-medium mb-1">Imię</label>
+          <input
+            formControlName="firstName"
+            type="text"
+            class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+  
+        <div class="mb-4">
+          <label class="block text-sm font-medium mb-1">Nazwisko</label>
+          <input
+            formControlName="lastName"
+            type="text"
+            class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+  
+        <div class="mb-4">
+          <label class="block text-sm font-medium mb-1">Poczta elektroniczna</label>
+          <input
+            formControlName="email"
+            type="email"
+            class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+  
+        <div class="mb-6">
+          <label class="block text-sm font-medium mb-1">Hasło</label>
+          <input
+            formControlName="password"
+            type="password"
+            class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+  
+        <button
+          type="submit"
+          [disabled]="registerForm.invalid"
+          class="w-full bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 transition"
+        >
+        Rejestracja
+        </button>
+  
+        <div class="text-center mt-4">
+          <a routerLink="/login" class="text-blue-600 hover:underline text-sm">
+            Masz już konto? Zaloguj się
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+  

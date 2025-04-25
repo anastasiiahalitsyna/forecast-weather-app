@@ -1,0 +1,25 @@
+<div class="custom-container">
+  <div class="absolute top-4 right-4">
+    @if (!isUserLoggedIn()) {
+    <button (click)="navigateToLogin()" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition shadow-md">
+      Zaloguj się
+    </button>
+    } @else {
+
+    <div class="absolute top-1 right-1">
+      <button (click)="logoutUser()" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition shadow-md border border-red-700">
+        Wyloguj się
+      </button>
+    </div>
+    }
+  </div>
+  <app-search-bar (refreshDashboard)="refreshDashboard()" class="search-bar"></app-search-bar>
+
+  <div class="weather-cards-container">
+    @for (detail of weatherDetails; track detail) {
+    <app-weather-card (refreshDashboard)="refreshDashboard()" [weatherDetail]="detail"
+      class="weather-card"></app-weather-card>
+    }
+  </div>
+</div>
+<router-outlet></router-outlet>
