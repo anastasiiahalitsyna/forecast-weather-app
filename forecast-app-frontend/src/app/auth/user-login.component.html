@@ -1,0 +1,48 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-100">
+    <div class="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md">
+      <h2 class="text-2xl font-bold mb-6 text-center">Zaloguj się</h2>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="mb-4">
+          <label class="block text-sm font-medium mb-1">Poczta elektroniczna</label>
+          <input
+            formControlName="email"
+            type="email"
+            class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          @if (email.invalid && email.touched) {
+            <div class="text-red-500 text-sm">
+              Wymagany jest prawidłowy adres e-mail
+            </div>
+          }
+        </div>
+  
+        <div class="mb-6">
+          <label class="block text-sm font-medium mb-1">Hasło</label>
+          <input
+            formControlName="password"
+            type="password"
+            class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          @if (password.invalid && password.touched) {
+            <div class="text-red-500 text-sm">
+              Wymagane jest hasło
+            </div>
+          }
+        </div>
+  
+        <button
+          type="submit"
+          [disabled]="loginForm.invalid"
+          class="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition"
+        >
+          Logowanie
+        </button>
+      </form>
+      <div class="text-center mt-4">
+        <a routerLink="/register" class="text-blue-600 hover:underline text-sm">
+          Nie masz konta? Zarejestruj się
+        </a>
+      </div>
+    </div>
+  </div>
+  
